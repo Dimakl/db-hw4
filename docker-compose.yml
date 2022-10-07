@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  pg_subway:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "KOCHESHKOV_204"
+      POSTGRES_USER: "KOCHESHKOV_204"
+      POSTGRES_PASSWORD: "KOCHESHKOV_204"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/subway.sql:/docker-entrypoint-initdb.d/subway.sql
+      - ./pg_subway:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+  pg_library:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "KOCHESHKOV_204"
+      POSTGRES_USER: "KOCHESHKOV_204"
+      POSTGRES_PASSWORD: "KOCHESHKOV_204"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/library.sql:/docker-entrypoint-initdb.d/library.sql
+      - ./pg_library:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  pg_hospital:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "KOCHESHKOV_204"
+      POSTGRES_USER: "KOCHESHKOV_204"
+      POSTGRES_PASSWORD: "KOCHESHKOV_204"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/hospital.sql:/docker-entrypoint-initdb.d/hospital.sql
+      - ./pg_hospital:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
